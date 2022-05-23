@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Nikki.Core;
 using Nikki.Utils;
@@ -15,8 +15,6 @@ namespace Nikki.Support.Carbon.Framework
 	/// </summary>
 	public class FNGroupManager : Manager<FNGroup>
 	{
-		private bool _is_read_only = true;
-
 		/// <summary>
 		/// Game to which the class belongs to.
 		/// </summary>
@@ -40,7 +38,7 @@ namespace Nikki.Support.Carbon.Framework
 		/// <summary>
 		/// True if this <see cref="Manager{T}"/> is read-only; otherwise, false.
 		/// </summary>
-		public override bool IsReadOnly => this._is_read_only;
+		public override bool IsReadOnly => false;
 
 		/// <summary>
 		/// Indicates required alighment when this <see cref="FNGroupManager"/> is being serialized.
@@ -90,7 +88,6 @@ namespace Nikki.Support.Carbon.Framework
 			if (Block.IsNullOrEmpty(block)) return;
 			if (block.BlockID != BinBlockID.FEngFiles) return;
 
-			this._is_read_only = false;
 			this.Capacity = block.Offsets.Count;
 
 			for (int loop = 0; loop < block.Offsets.Count; ++loop)
@@ -103,8 +100,6 @@ namespace Nikki.Support.Carbon.Framework
 				catch { } // skip if exists
 
 			}
-
-			this._is_read_only = true;
 		}
 
 		/// <summary>
@@ -209,12 +204,9 @@ namespace Nikki.Support.Carbon.Framework
 			{
 
 				// Allow import of FNGroups because it is safe
-				this._is_read_only = false;
 				++this.Capacity;
 				collection.Manager = this;
 				this.Add(collection);
-				this._is_read_only = true;
-
 			}
 			else
 			{
