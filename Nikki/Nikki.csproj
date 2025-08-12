@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>1.6.5</Version>
+    <Version>1.6.6</Version>
     <Authors>MaxHwoy</Authors>
     <Copyright>Copyright © 2021 MaxHwoy</Copyright>
-    <Description>Library to read and write Binary (BIN) data. Includes support for BlackBox NFS games.</Description>
-    <AssemblyVersion>1.6.5.0</AssemblyVersion>
-    <FileVersion>1.6.5.0</FileVersion>
+    <Description>Library to read and write Binary (BIN) data. Includes support for BlackBox NFS games. Based on Nikki by MaxHwoy.</Description>
+    <AssemblyVersion>1.6.6.0</AssemblyVersion>
+    <FileVersion>1.6.6.0</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>

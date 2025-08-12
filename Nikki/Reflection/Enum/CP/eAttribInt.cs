@@ -143,6 +143,6 @@
 		/// <summary>
 		/// 
 		/// </summary>
-		_0x7D29CF3E = 0x7D29CF3E,
+		WIDEBODYKIT = 0x7D29CF3E,
 	}
 }

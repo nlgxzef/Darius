@@ -200,14 +200,25 @@ namespace Nikki.Support.Undercover.Attributes
 			this.Type = CarPartAttribType.Integer;
 		}
 
-		/// <summary>
-		/// Initializes new instance of <see cref="CustomAttribute"/> by reading data using 
-		/// <see cref="BinaryReader"/> provided.
+        /// <summary>
+		/// Initializes new instance of <see cref="CustomAttribute"/> with value and type provided.
 		/// </summary>
-		/// <param name="br"><see cref="BinaryReader"/> to read with.</param>
-		/// <param name="str_reader"><see cref="BinaryReader"/> to read strings with.</param>
-		/// <param name="cp"><see cref="CustomCP"/> with attribute type data.</param>
-		public CustomAttribute(BinaryReader br, BinaryReader str_reader, CustomCP cp)
+		/// <param name="name">Name of this attribute.</param>
+		/// <param name="type">Type of this attribute.</param>
+		public CustomAttribute(string name, CarPartAttribType type)
+        {
+            this.Name = name ?? String.Empty;
+            this.Type = type;
+        }
+
+        /// <summary>
+        /// Initializes new instance of <see cref="CustomAttribute"/> by reading data using 
+        /// <see cref="BinaryReader"/> provided.
+        /// </summary>
+        /// <param name="br"><see cref="BinaryReader"/> to read with.</param>
+        /// <param name="str_reader"><see cref="BinaryReader"/> to read strings with.</param>
+        /// <param name="cp"><see cref="CustomCP"/> with attribute type data.</param>
+        public CustomAttribute(BinaryReader br, BinaryReader str_reader, CustomCP cp)
 		{
 			if (cp is null) throw new ArgumentNullException(nameof(cp), "CustomCP was null");
 			this.Key = cp.Key;

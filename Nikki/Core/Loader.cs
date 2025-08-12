@@ -234,5 +234,5 @@ namespace Nikki.Core
 			
 			}
 		}
-	}
+    }
 }

@@ -148,6 +148,6 @@
 		/// <summary>
 		/// 
 		/// </summary>
-		_0x6509EC92 = 0x6509EC92,
+		UNPAINTABLE = 0x6509EC92,
 	}
 }

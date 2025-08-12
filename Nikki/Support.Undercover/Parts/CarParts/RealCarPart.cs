@@ -246,14 +246,24 @@ namespace Nikki.Support.Undercover.Parts.CarParts
 			this.Attributes.Add(new CustomAttribute(name));
 		}
 
-		/// <summary>
-		/// Makes regex replacement of PartLabel or every single property and attribute.
+        /// <summary>
+		/// Adds a custom attribute type to this part.
 		/// </summary>
-		/// <param name="onlyLabel">True if replace only label; false if replace all.</param>
-		/// <param name="pattern">Pattern of characters as a string to replace.</param>
-		/// <param name="replacement">Replacement string for encountered pattern of characters.</param>
-		/// <param name="regexOptions"><see cref="RegexOptions"/> for regex replacement.</param>
-		public override void MakeReplace(bool onlyLabel, string pattern, string replacement, RegexOptions regexOptions)
+		/// <param name="name">Name of custom attribute to add.</param>
+		/// <param name="type">Type of custom attribute to add.</param>
+        public override void AddCustomAttribute(string name, CarPartAttribType type)
+        {
+            this.Attributes.Add(new CustomAttribute(name, type));
+        }
+
+        /// <summary>
+        /// Makes regex replacement of PartLabel or every single property and attribute.
+        /// </summary>
+        /// <param name="onlyLabel">True if replace only label; false if replace all.</param>
+        /// <param name="pattern">Pattern of characters as a string to replace.</param>
+        /// <param name="replacement">Replacement string for encountered pattern of characters.</param>
+        /// <param name="regexOptions"><see cref="RegexOptions"/> for regex replacement.</param>
+        public override void MakeReplace(bool onlyLabel, string pattern, string replacement, RegexOptions regexOptions)
 		{
 			foreach (var attribute in this.Attributes)
 			{

@@ -1,9 +1,12 @@
-﻿using System.ComponentModel;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Nikki.Utils;
-using Nikki.Reflection.Abstract;
+﻿using Nikki.Reflection.Abstract;
+using Nikki.Reflection.Enum;
 using Nikki.Support.Shared.Class;
+using Nikki.Utils;
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Security.AccessControl;
+using System.Text.RegularExpressions;
 
 
 
@@ -135,14 +138,21 @@ namespace Nikki.Support.Shared.Parts.CarParts
 		/// <param name="name">Name of custom attribute to add.</param>
 		public abstract void AddCustomAttribute(string name);
 
-		/// <summary>
-		/// Makes regex replacement of PartLabel or every single property and attribute.
+        /// <summary>
+		/// Adds a custom attribute type to this part.
 		/// </summary>
-		/// <param name="onlyLabel">True if replace only label; false if replace all.</param>
-		/// <param name="pattern">Pattern of characters as a string to replace.</param>
-		/// <param name="replacement">Replacement string for encountered pattern of characters.</param>
-		/// <param name="regexOptions"><see cref="RegexOptions"/> for regex replacement.</param>
-		public abstract void MakeReplace(bool onlyLabel, string pattern, string replacement, RegexOptions regexOptions);
+		/// <param name="name">Name of custom attribute to add.</param>
+		/// <param name="type">Type of custom attribute to add.</param>
+		public abstract void AddCustomAttribute(string name, CarPartAttribType type);
+
+        /// <summary>
+        /// Makes regex replacement of PartLabel or every single property and attribute.
+        /// </summary>
+        /// <param name="onlyLabel">True if replace only label; false if replace all.</param>
+        /// <param name="pattern">Pattern of characters as a string to replace.</param>
+        /// <param name="replacement">Replacement string for encountered pattern of characters.</param>
+        /// <param name="regexOptions"><see cref="RegexOptions"/> for regex replacement.</param>
+        public abstract void MakeReplace(bool onlyLabel, string pattern, string replacement, RegexOptions regexOptions);
 
 		/// <summary>
 		/// Creates a plain copy of the objects that contains same values.

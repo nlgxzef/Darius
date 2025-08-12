@@ -707,6 +707,11 @@
             Map of all car part labels to <see cref="T:Nikki.Reflection.Enum.CarPartAttribType"/>.
             </summary>
         </member>
+        <member name="F:Nikki.Core.Map.CustomAttribFile">
+            <summary>
+            Map of all custom attribute keys to their names.
+            </summary>
+        </member>
         <member name="P:Nikki.Core.Map.BlockToAlignment">
             <summary>
             Map of all block to alignments.
@@ -2185,7 +2190,7 @@
             
             </summary>
         </member>
-        <member name="F:Nikki.Reflection.Enum.CP.eAttribBool._0x6509EC92">
+        <member name="F:Nikki.Reflection.Enum.CP.eAttribBool.UNPAINTABLE">
             <summary>
             
             </summary>
@@ -2405,7 +2410,7 @@
             
             </summary>
         </member>
-        <member name="F:Nikki.Reflection.Enum.CP.eAttribInt._0x7D29CF3E">
+        <member name="F:Nikki.Reflection.Enum.CP.eAttribInt.WIDEBODYKIT">
             <summary>
             
             </summary>
@@ -9564,6 +9569,13 @@
             </summary>
             <param name="name">Name of this attribute.</param>
         </member>
+        <member name="M:Nikki.Support.Carbon.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Carbon.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
+        </member>
         <member name="M:Nikki.Support.Carbon.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
             Initializes new instance of <see cref="T:Nikki.Support.Carbon.Attributes.CustomAttribute"/> by reading data using 
@@ -15505,6 +15517,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.Carbon.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.Carbon.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -16515,6 +16534,13 @@
             Initializes new instance of <see cref="T:Nikki.Support.MostWanted.Attributes.CustomAttribute"/> with value provided.
             </summary>
             <param name="name">Name of this attribute.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.MostWanted.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
         </member>
         <member name="M:Nikki.Support.MostWanted.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
@@ -20846,6 +20872,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.MostWanted.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.MostWanted.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -21833,6 +21866,13 @@
             Initializes new instance of <see cref="T:Nikki.Support.Prostreet.Attributes.CustomAttribute"/> with value provided.
             </summary>
             <param name="name">Name of this attribute.</param>
+        </member>
+        <member name="M:Nikki.Support.Prostreet.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Prostreet.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
         </member>
         <member name="M:Nikki.Support.Prostreet.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
@@ -27005,6 +27045,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.Prostreet.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.Prostreet.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -30864,6 +30911,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.Shared.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.Shared.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -32658,6 +32712,13 @@
             Initializes new instance of <see cref="T:Nikki.Support.Undercover.Attributes.CustomAttribute"/> with value provided.
             </summary>
             <param name="name">Name of this attribute.</param>
+        </member>
+        <member name="M:Nikki.Support.Undercover.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Undercover.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
         </member>
         <member name="M:Nikki.Support.Undercover.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
@@ -38769,6 +38830,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.Undercover.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.Undercover.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -39098,6 +39166,13 @@
             Initializes new instance of <see cref="T:Nikki.Support.Underground1.Attributes.CustomAttribute"/> with value provided.
             </summary>
             <param name="name">Name of this attribute.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground1.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
         </member>
         <member name="M:Nikki.Support.Underground1.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
@@ -43561,6 +43636,13 @@
             </summary>
             <param name="name">Name of custom attribute to add.</param>
         </member>
+        <member name="M:Nikki.Support.Underground1.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
+        </member>
         <member name="M:Nikki.Support.Underground1.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>
             Makes regex replacement of PartLabel or every single property and attribute.
@@ -45786,6 +45868,13 @@
             Initializes new instance of <see cref="T:Nikki.Support.Underground2.Attributes.CustomAttribute"/> with value provided.
             </summary>
             <param name="name">Name of this attribute.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Attributes.CustomAttribute.#ctor(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground2.Attributes.CustomAttribute"/> with value and type provided.
+            </summary>
+            <param name="name">Name of this attribute.</param>
+            <param name="type">Type of this attribute.</param>
         </member>
         <member name="M:Nikki.Support.Underground2.Attributes.CustomAttribute.#ctor(System.IO.BinaryReader,System.IO.BinaryReader,Nikki.Support.Shared.Parts.CarParts.CustomCP)">
             <summary>
@@ -53938,6 +54027,13 @@
             Adds a custom attribute type to this part.
             </summary>
             <param name="name">Name of custom attribute to add.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Parts.CarParts.RealCarPart.AddCustomAttribute(System.String,Nikki.Reflection.Enum.CarPartAttribType)">
+            <summary>
+            Adds a custom attribute type to this part.
+            </summary>
+            <param name="name">Name of custom attribute to add.</param>
+            <param name="type">Type of custom attribute to add.</param>
         </member>
         <member name="M:Nikki.Support.Underground2.Parts.CarParts.RealCarPart.MakeReplace(System.Boolean,System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
             <summary>

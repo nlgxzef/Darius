@@ -83,6 +83,7 @@ namespace Nikki.Core
 			{ 0x6212682B, "NUMREMAPCOLOURS" },
 			{ 0x6223C6F9, "VINYLLANGUAGEHASH" },
 			{ 0x643DABEB, "LOD_NAME_PREFIX_SELECTOR" },
+			{ 0x6509EC92, "UNPAINTABLE" },
 			{ 0x6AB42ADF, "WHEELLEFT" },
 			{ 0x6B66D0E0, "FULLBODY" },
 			{ 0x6BA02C05, "LIGHT_MATERIAL_NAME" },
@@ -98,6 +99,7 @@ namespace Nikki.Core
 			{ 0x796C0CB0, "KITNUMBER" },
 			{ 0x7AED5629, "SWATCH" },
 			{ 0x7C811574, "HOODLEFT" },
+			{ 0x7D29CF3E, "WIDEBODYKIT" },
 			{ 0x7D65A926, "NAME_OFFSET" },
 			{ 0x7F3CE5A7, "Tracks" },
 			{ 0x87557E1E, "COMPLEXTARGET" },
@@ -165,7 +167,7 @@ namespace Nikki.Core
 			{ 0x09163F9F, CarPartAttribType.Boolean }, // USEMARKER1
 			{ 0x09163FA0, CarPartAttribType.Boolean }, // USEMARKER2
 			{ 0x87557E1E, CarPartAttribType.Boolean }, // COMPLEXTARGET
-			{ 0x6509EC92, CarPartAttribType.Boolean }, // 0x6509EC92 // ALUMINUM ???
+			{ 0x6509EC92, CarPartAttribType.Boolean }, // UNPAINTABLE
 			{ 0x721AFF7C, CarPartAttribType.Boolean }, // CARBONFIBRE
 			{ 0xF7933C86, CarPartAttribType.Boolean }, // EXCLUDE_SUV
 			{ 0xF7934315, CarPartAttribType.Boolean }, // EXCLUDE_UG1
@@ -269,7 +271,7 @@ namespace Nikki.Core
 			{ 0x796C0CB0, CarPartAttribType.Integer }, // KITNUMBER
 			{ 0x564B8CB6, CarPartAttribType.Integer }, // NUMCOLOURS
 			{ 0xA77BDCFA, CarPartAttribType.Integer }, // NUM_DECALS
-			{ 0x7D29CF3E, CarPartAttribType.Integer }, // 0x7D29CF3E // ???
+			{ 0x7D29CF3E, CarPartAttribType.Integer }, // WIDEBODYKIT
 			{ 0x48620C16, CarPartAttribType.Integer }, // DAMAGELEVEL
 			{ 0x1B0EA1A9, CarPartAttribType.Integer }, // SPOKE_COUNT
 			{ 0xEB0101E2, CarPartAttribType.Integer }, // INNER_RADIUS
@@ -296,10 +298,16 @@ namespace Nikki.Core
 		/// </summary>
 		public static Dictionary<uint, CarPartAttribType> CarPartKeys => _carpartkeys;
 
-		/// <summary>
-		/// Map of all block to alignments.
+        /// <summary>
+		/// Map of all custom attribute keys to their names.
 		/// </summary>
-		internal static Dictionary<BinBlockID, Alignment> BlockToAlignment => new Dictionary<BinBlockID, Alignment>()
+		public static string CustomAttribFile;
+		public static List<string> CustomAttribKeys;
+
+        /// <summary>
+        /// Map of all block to alignments.
+        /// </summary>
+        internal static Dictionary<BinBlockID, Alignment> BlockToAlignment => new Dictionary<BinBlockID, Alignment>()
 		{
 			{ BinBlockID.FEngFont,           Alignment.Default },
 			{ BinBlockID.FEngFiles,          Alignment.Default },
@@ -435,6 +443,7 @@ namespace Nikki.Core
 			"NUMREMAPCOLOURS".BinHash();
 			"VINYLLANGUAGEHASH".BinHash();
 			"LOD_NAME_PREFIX_SELECTOR".BinHash();
+            "UNPAINTABLE".BinHash();
 			"WHEELLEFT".BinHash();
 			"FULLBODY".BinHash();
 			"LIGHT_MATERIAL_NAME".BinHash();
@@ -450,6 +459,7 @@ namespace Nikki.Core
 			"KITNUMBER".BinHash();
 			"SWATCH".BinHash();
 			"HOODLEFT".BinHash();
+            "WIDEBODYKIT".BinHash();
 			"NAME_OFFSET".BinHash();
 			"Tracks".BinHash();
 			"COMPLEXTARGET".BinHash();
