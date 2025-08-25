@@ -10,6 +10,7 @@
     <FileVersion>1.6.6.0</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
     <PlatformTarget>x86</PlatformTarget>
+    <Product>Darius</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
