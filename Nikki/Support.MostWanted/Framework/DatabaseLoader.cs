@@ -40,8 +40,8 @@ namespace Nikki.Support.MostWanted.Framework
 			this._db = db;
 			this._logger = new Logger("MainLog.txt", "Nikki.dll : MostWanted DatabaseLoader", true);
 			this.materials = new Block(BinBlockID.Materials);
-			this.tpkblocks = new Block(BinBlockID.TPKBlocks);
-			this.cartypeinfos = new Block(BinBlockID.CarTypeInfos);
+            this.tpkblocks = new Block(BinBlockID.TPKBlocks);
+            this.cartypeinfos = new Block(BinBlockID.CarTypeInfos);
 			this.presetrides = new Block(BinBlockID.PresetRides);
 			this.collisions = new Block(BinBlockID.DBCarBounds);
 			this.dbmodelparts = new Block(BinBlockID.DBCarParts);
@@ -115,7 +115,7 @@ namespace Nikki.Support.MostWanted.Framework
 			this._db.STRBlocks.Disassemble(br, this.strblocks);
 			this._db.Materials.Disassemble(br, this.materials);
 			this._db.TPKBlocks.Disassemble(br, this.tpkblocks);
-			this._db.CarTypeInfos.Disassemble(br, this.cartypeinfos);
+            this._db.CarTypeInfos.Disassemble(br, this.cartypeinfos);
 			this._db.DBModelParts.Disassemble(br, this.dbmodelparts);
 			this._db.SunInfos.Disassemble(br, this.suninfos);
 			this._db.Tracks.Disassemble(br, this.tracks);
@@ -140,7 +140,7 @@ namespace Nikki.Support.MostWanted.Framework
 				if (!Enum.IsDefined(typeof(BinBlockID), (uint)id))
 				{
 
-					Console.WriteLine("Located unknown data block. Please send MailLog file to the developer!!!");
+					Console.WriteLine("Located unknown data block. Please send MainLog file to the developer!!!");
 
 					if (this._offsets.TryGetValue((uint)id, out var list))
 					{
@@ -189,7 +189,7 @@ namespace Nikki.Support.MostWanted.Framework
 						this.materials.Offsets.Add(off);
 						goto default;
 
-					case BinBlockID.TPKBlocks:
+                    case BinBlockID.TPKBlocks:
 					case BinBlockID.EmitterTexturePage:
 					case BinBlockID.CompTPKBlock:
 						this.tpkblocks.Offsets.Add(off);

@@ -86,12 +86,6 @@ namespace Nikki.Support.Undercover.Class
         public override uint FilenameHash => this.Filename.BinHash();
 
         /// <summary>
-        /// Represents all <see cref="AnimSlot"/> of this <see cref="TPKBlock"/>.
-        /// </summary>
-        [Category("Primary")]
-        public override List<AnimSlot> Animations => this._animations;
-
-        /// <summary>
         /// Represents all <see cref="TexturePage"/> of this <see cref="TPKBlock"/>.
         /// </summary>
         [Category("Primary")]
@@ -121,9 +115,8 @@ namespace Nikki.Support.Undercover.Class
         /// <summary>
         /// Initializes new instance of <see cref="TPKBlock"/>.
         /// </summary>
-        public TPKBlock()
-		{
-            this._animations = new List<AnimSlot>();
+        public TPKBlock() : base()
+        {
             this._texturePages = new List<TexturePage>();
             this._textures = new List<Shared.Class.Texture>();
 		}

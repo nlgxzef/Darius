@@ -60,7 +60,7 @@ namespace Nikki.Support.MostWanted.Framework
 			this._db.STRBlocks.Assemble(bw, this._options.Watermark);
 			this._db.Materials.Assemble(bw, this._options.Watermark);
 			this._db.TPKBlocks.Assemble(bw, this._options.Watermark);
-			this._db.CarTypeInfos.Assemble(bw, this._options.Watermark);
+            this._db.CarTypeInfos.Assemble(bw, this._options.Watermark);
 			this._db.SlotTypes.Assemble(bw, this._options.Watermark);
 			this._db.DBModelParts.Assemble(bw, this._options.Watermark);
 			this._db.Tracks.Assemble(bw, this._options.Watermark);
@@ -103,7 +103,7 @@ namespace Nikki.Support.MostWanted.Framework
 			this._db.STRBlocks.Assemble(bw, this._options.Watermark);
 			this._db.Materials.Assemble(bw, this._options.Watermark);
 			this._db.TPKBlocks.Assemble(bw, this._options.Watermark);
-			this._db.CarTypeInfos.Assemble(bw, this._options.Watermark);
+            this._db.CarTypeInfos.Assemble(bw, this._options.Watermark);
 			this._db.SlotTypes.Assemble(bw, this._options.Watermark);
 			this._db.DBModelParts.Assemble(bw, this._options.Watermark);
 			this._db.Tracks.Assemble(bw, this._options.Watermark);
@@ -147,6 +147,7 @@ namespace Nikki.Support.MostWanted.Framework
 					case BinBlockID.SlotTypes:
 					case BinBlockID.STRBlocks:
 					case BinBlockID.TPKBlocks:
+					case BinBlockID.OldAnimationPack:
 					case BinBlockID.DBCarParts:
 					case BinBlockID.DBCarBounds:
 					case BinBlockID.FNGCompress:

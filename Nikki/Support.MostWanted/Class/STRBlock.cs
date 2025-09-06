@@ -27,7 +27,7 @@ namespace Nikki.Support.MostWanted.Class
 		#region Fields
 
 		private string _collection_name;
-		private byte[] _unk_data;
+		private Charset _charset;
 		private List<StringRecord> _stringinfo;
 
 		/// <summary>
@@ -109,7 +109,11 @@ namespace Nikki.Support.MostWanted.Class
 		/// <summary>
 		/// Initializes new instance of <see cref="STRBlock"/>.
 		/// </summary>
-		public STRBlock() => this._stringinfo = new List<StringRecord>();
+		public STRBlock()
+		{
+			this._stringinfo = new List<StringRecord>();
+			this._charset = new Charset();
+		}
 
 		/// <summary>
 		/// Initializes new instance of <see cref="STRBlock"/>.
@@ -144,8 +148,8 @@ namespace Nikki.Support.MostWanted.Class
 		/// <param name="bw"><see cref="BinaryWriter"/> to write <see cref="STRBlock"/> with.</param>
 		public override void Assemble(BinaryWriter bw)
 		{
-			var udat_offset = 0x20;
-			var hash_offset = udat_offset + this._unk_data.Length;
+			var cset_offset = 0x20;
+			var hash_offset = cset_offset + this._charset.Size();
 			var text_offset = hash_offset + this.StringRecordCount * 8;
 
 			// Sort records by keys
@@ -159,12 +163,17 @@ namespace Nikki.Support.MostWanted.Class
 			var position = bw.BaseStream.Position;
 
 			// Write offsets
-			bw.Write(udat_offset);
+			bw.Write(cset_offset);
 			bw.Write(this.StringRecordCount);
 			bw.Write(hash_offset);
 			bw.Write(text_offset);
 			bw.WriteNullTermUTF8(this._collection_name, 0x10);
-			bw.Write(this._unk_data);
+
+			bw.Write(this._charset.NumEntries);
+			foreach (var entry in this._charset.EntryTable)
+			{
+                bw.Write(entry);
+            }
 
 			int length = 0;
 			
@@ -180,7 +189,8 @@ namespace Nikki.Support.MostWanted.Class
 			foreach (var info in this._stringinfo)
 			{
 
-				bw.WriteNullTermUTF8(info.Text);
+				if (this._charset != null) bw.WriteNullTermUTF8ByteArray(this._charset.Encode(info.Text));
+				else bw.WriteNullTermUTF8(info.Text);
 
 			}
 
@@ -200,7 +210,7 @@ namespace Nikki.Support.MostWanted.Class
 			int BlockSize = br.ReadInt32();
 			var broffset = br.BaseStream.Position;
 
-			int udatoffset = br.ReadInt32();
+			int csetoffset = br.ReadInt32();
 			int numentries = br.ReadInt32();
 			int hashoffset = br.ReadInt32();
 			int textoffset = br.ReadInt32();
@@ -208,7 +218,7 @@ namespace Nikki.Support.MostWanted.Class
 			// Read CollectionName
 			// Since CollectionNames do not exist in vanilla files, but they do exist
 			// in saved files using this library, they are supposed to be located at 
-			// offset 0x10, while unknown data at offset 0x20
+			// offset 0x10, while character set at offset 0x20
 			string count = this.Manager is null
 				? String.Empty
 				: this.Manager.Count == 0 ? String.Empty : this.Manager.Count.ToString();
@@ -216,7 +226,7 @@ namespace Nikki.Support.MostWanted.Class
 			// Since there exists only one at a time
 			this._collection_name = $"GLOBAL{count}";
 
-			if (udatoffset > 0x10 && hashoffset > 0x10 && textoffset > 0x10)
+			if (csetoffset > 0x10 && hashoffset > 0x10 && textoffset > 0x10)
 			{
 
 				br.BaseStream.Position = broffset + 0x10;
@@ -225,13 +235,18 @@ namespace Nikki.Support.MostWanted.Class
 
 			}
 
-			// Read unknown data
-			var unksize = hashoffset - udatoffset;
-			br.BaseStream.Position = broffset + udatoffset;
-			this._unk_data = br.ReadBytes(unksize);
+			// Read character set
+			var csetsize = hashoffset - csetoffset;
+			br.BaseStream.Position = broffset + csetoffset;
+			this._charset.NumEntries = br.ReadInt32();
 
-			// Begin reading through string records
-			for (int loop = 0; loop < numentries; ++loop)
+			for (int loop = 0; loop < this._charset.EntryTable.Length; ++loop)
+			{
+				this._charset.EntryTable[loop] = br.ReadUInt16();
+            }
+
+            // Begin reading through string records
+            for (int loop = 0; loop < numentries; ++loop)
 			{
 				
 				br.BaseStream.Position = broffset + hashoffset + loop * 8;
@@ -242,7 +257,7 @@ namespace Nikki.Support.MostWanted.Class
 				};
 				
 				br.BaseStream.Position = broffset + textoffset + br.ReadInt32();
-				info.Text = br.ReadNullTermUTF8();
+				info.Text = this._charset != null ? this._charset.Decode(br.ReadNullTermUTF8ByteArray()) : br.ReadNullTermUTF8();
 				info.Label = info.Key.BinString(LookupReturn.EMPTY);
 				this._stringinfo.Add(info);
 			
@@ -428,22 +443,32 @@ namespace Nikki.Support.MostWanted.Class
 		public override void Serialize(BinaryWriter bw)
 		{
 			byte[] array;
-			using (var ms = new MemoryStream(this.StringRecordCount << 5 + this._unk_data.Length))
+			using (var ms = new MemoryStream(this.StringRecordCount << 5 + this._charset.Size()))
 			using (var writer = new BinaryWriter(ms))
 			{
 
 				writer.WriteNullTermUTF8(this._collection_name);
-				writer.Write(this._unk_data.Length);
+				writer.Write(this._charset.Size());
 				writer.Write(this.StringRecordCount);
 
-				writer.Write(this._unk_data);
+				writer.Write(this._charset.NumEntries);
+				for (int loop = 0; loop < this._charset.NumEntries; loop++)
+				{
+					writer.Write(this._charset.EntryTable[loop]);
+				}
 
 				for (int loop = 0; loop < this.StringRecordCount; ++loop)
 				{
-
-					writer.WriteNullTermUTF8(this._stringinfo[loop].Label);
-					writer.WriteNullTermUTF8(this._stringinfo[loop].Text);
-
+                    if (this._charset != null)
+					{
+                        writer.WriteNullTermUTF8ByteArray(this._charset.Encode(this._stringinfo[loop].Label));
+                        writer.WriteNullTermUTF8ByteArray(this._charset.Encode(this._stringinfo[loop].Text));
+                    }
+					else
+					{
+                        writer.WriteNullTermUTF8(this._stringinfo[loop].Label);
+                        writer.WriteNullTermUTF8(this._stringinfo[loop].Text);
+                    }
 				}
 
 				array = ms.ToArray();
@@ -477,15 +502,20 @@ namespace Nikki.Support.MostWanted.Class
 			var count = reader.ReadInt32();
 			this._stringinfo.Capacity = count;
 
-			this._unk_data = reader.ReadBytes(length);
+            this._charset.NumEntries = br.ReadInt32();
 
-			for (int loop = 0; loop < count; ++loop)
+            for (int loop = 0; loop < this._charset.NumEntries; ++loop)
+            {
+                this._charset.EntryTable[loop] = br.ReadUInt16();
+            }
+
+            for (int loop = 0; loop < count; ++loop)
 			{
 
 				var info = new StringRecord(this)
 				{
-					Label = reader.ReadNullTermUTF8(),
-					Text = reader.ReadNullTermUTF8()
+					Label = this._charset != null ? this._charset.Decode(br.ReadNullTermUTF8ByteArray()) : reader.ReadNullTermUTF8(),
+					Text = this._charset != null ? this._charset.Decode(br.ReadNullTermUTF8ByteArray()) : reader.ReadNullTermUTF8()
 				};
 
 				info.Key = info.Label.BinHash();
@@ -526,8 +556,8 @@ namespace Nikki.Support.MostWanted.Class
 
 			this._stringinfo = records;
 
-			// Replace unknown data, if any
-			if (other._unk_data != null) this._unk_data = other._unk_data;
+			// Replace character set, if any
+			if (other._charset != null) this._charset = other._charset;
 		}
 
 		#endregion

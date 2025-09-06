@@ -1550,6 +1550,16 @@
             0x0003B200
             </summary>
         </member>
+        <member name="F:Nikki.Reflection.Enum.BinBlockID.ICECameras">
+            <summary>
+            0x0003B211
+            </summary>
+        </member>
+        <member name="F:Nikki.Reflection.Enum.BinBlockID.ShaperLightRigs">
+            <summary>
+            0x0003B700
+            </summary>
+        </member>
         <member name="F:Nikki.Reflection.Enum.BinBlockID.WWorld">
             <summary>
             0x0003B800
@@ -1688,6 +1698,21 @@
         <member name="F:Nikki.Reflection.Enum.BinBlockID.EAGLAnimations">
             <summary>
             0x00E34010
+            </summary>
+        </member>
+        <member name="F:Nikki.Reflection.Enum.BinBlockID.OldAnimationPackPart1">
+            <summary>
+            0x30300101
+            </summary>
+        </member>
+        <member name="F:Nikki.Reflection.Enum.BinBlockID.OldAnimationPackPart2">
+            <summary>
+            0x30300102
+            </summary>
+        </member>
+        <member name="F:Nikki.Reflection.Enum.BinBlockID.OldAnimationPackPart3">
+            <summary>
+            0x30300103
             </summary>
         </member>
         <member name="F:Nikki.Reflection.Enum.BinBlockID.DDSTexture">
@@ -13413,11 +13438,6 @@
             BinKey of the filename.
             </summary>
         </member>
-        <member name="P:Nikki.Support.Carbon.Class.TPKBlock.Animations">
-            <summary>
-            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.AnimSlot"/> of this <see cref="T:Nikki.Support.Carbon.Class.TPKBlock"/>.
-            </summary>
-        </member>
         <member name="P:Nikki.Support.Carbon.Class.TPKBlock.TexturePages">
             <summary>
             Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.TexturePage"/> of this <see cref="T:Nikki.Support.Carbon.Class.TPKBlock"/>.
@@ -18864,6 +18884,76 @@
             </summary>
             <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
         </member>
+        <member name="P:Nikki.Support.MostWanted.Class.TPKAnimation.GameINT">
+            <summary>
+            Game to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.MostWanted.Class.TPKAnimation.GameSTR">
+            <summary>
+            Game string to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.MostWanted.Class.TPKAnimation.AnimSlots">
+            <summary>
+            Animation slots of this <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.#ctor(System.String)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/>.
+            </summary>
+            <param name="CName">CollectionName of the new instance.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/>.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read text data with.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.MemoryCast(System.String)">
+            <summary>
+            Casts all attributes from this object to another one.
+            </summary>
+            <param name="CName">CollectionName of the new created object.</param>
+            <returns>Memory casted copy of the object.</returns>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.Assemble(System.IO.BinaryWriter)">
+            <summary>
+            Assembles <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/> into a byte array.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/> with.</param>
+            <returns>Byte array of the tpk block.</returns>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.Disassemble(System.IO.BinaryReader)">
+            <summary>
+            Disassembles <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/> array into separate properties.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read <see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/> with.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes instance into a byte array and stores it in the file provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes byte array into an instance by loading data from the file provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
+        <member name="M:Nikki.Support.MostWanted.Class.TPKAnimation.Synchronize(Nikki.Support.MostWanted.Class.TPKAnimation)">
+            <summary>
+            Synchronizes all parts of this instance with another instance passed.
+            </summary>
+            <param name="other"><see cref="T:Nikki.Support.MostWanted.Class.TPKAnimation"/> to synchronize with.</param>
+        </member>
         <member name="T:Nikki.Support.MostWanted.Class.TPKBlock">
             <summary>
             <see cref="T:Nikki.Support.MostWanted.Class.TPKBlock"/> is a collection of <see cref="T:Nikki.Support.MostWanted.Class.Texture"/>.
@@ -18906,7 +18996,7 @@
         </member>
         <member name="P:Nikki.Support.MostWanted.Class.TPKBlock.Animations">
             <summary>
-            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.AnimSlot"/> of this <see cref="T:Nikki.Support.MostWanted.Class.TPKBlock"/>.
+            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/> of this <see cref="T:Nikki.Support.MostWanted.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.MostWanted.Class.TPKBlock.TexturePages">
@@ -18922,6 +19012,11 @@
         <member name="P:Nikki.Support.MostWanted.Class.TPKBlock.TextureCount">
             <summary>
             Number of <see cref="T:Nikki.Support.MostWanted.Class.Texture"/> in this <see cref="T:Nikki.Support.MostWanted.Class.TPKBlock"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.MostWanted.Class.TPKBlock.AnimationCount">
+            <summary>
+            Number of <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/> in this <see cref="T:Nikki.Support.MostWanted.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.MostWanted.Class.TPKBlock.CompTexHeaderSize">
@@ -25112,11 +25207,6 @@
             BinKey of the filename.
             </summary>
         </member>
-        <member name="P:Nikki.Support.Prostreet.Class.TPKBlock.Animations">
-            <summary>
-            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.AnimSlot"/> of this <see cref="T:Nikki.Support.Prostreet.Class.TPKBlock"/>.
-            </summary>
-        </member>
         <member name="P:Nikki.Support.Prostreet.Class.TPKBlock.TexturePages">
             <summary>
             Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.TexturePage"/> of this <see cref="T:Nikki.Support.Prostreet.Class.TPKBlock"/>.
@@ -29204,6 +29294,63 @@
             <param name="from">Texture to copy data from.</param>
             <param name="to">Texture to copy data into.</param>
         </member>
+        <member name="P:Nikki.Support.Shared.Class.TPKAnimation.CollectionName">
+            <summary>
+            Collection name of the variable.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Class.TPKAnimation.GameINT">
+            <summary>
+            Game to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Class.TPKAnimation.GameSTR">
+            <summary>
+            Game string to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Class.TPKAnimation.AnimSlots">
+            <summary>
+            Animation slots of this <see cref="T:Nikki.Support.Shared.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Class.TPKAnimation.AnimSlotCount">
+            <summary>
+            Number of animation slots of this <see cref="T:Nikki.Support.Shared.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKAnimation.MemoryCast(System.String)">
+            <summary>
+            Casts all attributes from this object to another one.
+            </summary>
+            <param name="CName">CollectionName of the new created object.</param>
+            <returns>Memory casted copy of the object.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKAnimation.Assemble(System.IO.BinaryWriter)">
+            <summary>
+            Assembles <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/> into a byte array.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/> with.</param>
+            <returns>Byte array of the tpk block.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKAnimation.Disassemble(System.IO.BinaryReader)">
+            <summary>
+            Disassembles <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/> array into separate properties.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/> with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKAnimation.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes instance into a byte array and stores it in the file provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKAnimation.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes byte array into an instance by loading data from the file provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
         <member name="T:Nikki.Support.Shared.Class.TPKBlock">
             <summary>
             <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/> is a collection of <see cref="T:Nikki.Support.Shared.Class.Texture"/>.
@@ -29357,6 +29504,11 @@
         <member name="P:Nikki.Support.Shared.Class.TPKBlock.VltKey">
             <summary>
             Vault memory hash of the collection name.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Shared.Class.TPKBlock.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="M:Nikki.Support.Shared.Class.TPKBlock.MemoryCast(System.String)">
@@ -31125,6 +31277,58 @@
             Class with strings to build labels for preset parts.
             </summary>
         </member>
+        <member name="P:Nikki.Support.Shared.Parts.STRParts.Charset.NumEntries">
+            <summary>
+            Number of entries in this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.STRParts.Charset.EntryTable">
+            <summary>
+            List of the entries in this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+        </member>
+        <member name="F:Nikki.Support.Shared.Parts.STRParts.Charset.numEntries">
+            <summary>
+            Constant string value "NumEntries".
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+            <param name="block"><see cref="T:Nikki.Support.Shared.Class.STRBlock"/> to which this 
+            <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/> belongs to.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.ToString">
+            <summary>
+            Returns number of entries of this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/> as a string.
+            </summary>
+            <returns>String value.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.Size">
+            <summary>
+            Returns total length of this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+            <returns>Length of charset.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.Decode(System.Byte[])">
+            <summary>
+            Decodes a given byte array using this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+            <returns>Decoded string.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.Encode(System.String)">
+            <summary>
+            Encodes a given string using this <see cref="T:Nikki.Support.Shared.Parts.STRParts.Charset"/>.
+            </summary>
+            <returns>Encoded byte array.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.STRParts.Charset.PlainCopy">
+            <summary>
+            Creates a plain copy of the objects that contains same values.
+            </summary>
+            <returns>Exact plain copy of the object.</returns>
+        </member>
         <member name="T:Nikki.Support.Shared.Parts.STRParts.StringRecord">
             <summary>
             Represents unit string record, which consists of key, label and text.
@@ -31584,6 +31788,89 @@
             <summary>
             Unknown 4-byte signed integer value.
             </summary>
+        </member>
+        <member name="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot">
+            <summary>
+            A unit animation block for <see cref="T:Nikki.Support.Shared.Class.TPKBlock"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.Name">
+            <summary>
+            Name of this <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.BinKey">
+            <summary>
+            Binary memory hash of the name.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.FramesPerSecond">
+            <summary>
+            Number of frames shown per second.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.TimeBase">
+            <summary>
+            Time base of this <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.FrameTextures">
+            <summary>
+            Frame textures of this <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.PlainCopy">
+            <summary>
+            Creates a plain copy of the objects that contains same values.
+            </summary>
+            <returns>Exact plain copy of the object.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.CloneValuesFrom(Nikki.Reflection.Abstract.SubPart)">
+            <summary>
+            Clones values of another <see cref="T:Nikki.Reflection.Abstract.SubPart"/>.
+            </summary>
+            <param name="other"><see cref="T:Nikki.Reflection.Abstract.SubPart"/> to clone.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.Read(System.IO.BinaryReader)">
+            <summary>
+            Reads data using <see cref="T:System.IO.BinaryReader"/> provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.Write(System.IO.BinaryWriter)">
+            <summary>
+            Writes data using <see cref="T:System.IO.BinaryWriter"/> provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.ReadSerialized(System.IO.BinaryReader)">
+            <summary>
+            Reads serialized data using <see cref="T:System.IO.BinaryReader"/> provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.WriteSerialized(System.IO.BinaryWriter)">
+            <summary>
+            Writes serialized data using <see cref="T:System.IO.BinaryWriter"/> provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.GetSerializedSize">
+            <summary>
+            Size of the animation slot.
+            </summary>
+            <returns>Size of the slot.</returns>
+        </member>
+        <member name="M:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot.ToString">
+            <summary>
+            Name of the animation slot.
+            </summary>
+            <returns>Name of the slot as a string value.</returns>
         </member>
         <member name="P:Nikki.Support.Shared.Parts.TPKParts.TexturePage.U0">
             <summary>
@@ -36066,11 +36353,6 @@
         <member name="P:Nikki.Support.Undercover.Class.TPKBlock.FilenameHash">
             <summary>
             BinKey of the filename.
-            </summary>
-        </member>
-        <member name="P:Nikki.Support.Undercover.Class.TPKBlock.Animations">
-            <summary>
-            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.AnimSlot"/> of this <see cref="T:Nikki.Support.Undercover.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.Undercover.Class.TPKBlock.TexturePages">
@@ -41969,6 +42251,76 @@
             </summary>
             <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
         </member>
+        <member name="P:Nikki.Support.Underground1.Class.TPKAnimation.GameINT">
+            <summary>
+            Game to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground1.Class.TPKAnimation.GameSTR">
+            <summary>
+            Game string to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground1.Class.TPKAnimation.AnimSlots">
+            <summary>
+            Animation slots of this <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.#ctor(System.String)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/>.
+            </summary>
+            <param name="CName">CollectionName of the new instance.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/>.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read text data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.MemoryCast(System.String)">
+            <summary>
+            Casts all attributes from this object to another one.
+            </summary>
+            <param name="CName">CollectionName of the new created object.</param>
+            <returns>Memory casted copy of the object.</returns>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.Assemble(System.IO.BinaryWriter)">
+            <summary>
+            Assembles <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/> into a byte array.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/> with.</param>
+            <returns>Byte array of the tpk block.</returns>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.Disassemble(System.IO.BinaryReader)">
+            <summary>
+            Disassembles <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/> array into separate properties.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read <see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/> with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes instance into a byte array and stores it in the file provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes byte array into an instance by loading data from the file provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground1.Class.TPKAnimation.Synchronize(Nikki.Support.Underground1.Class.TPKAnimation)">
+            <summary>
+            Synchronizes all parts of this instance with another instance passed.
+            </summary>
+            <param name="other"><see cref="T:Nikki.Support.Underground1.Class.TPKAnimation"/> to synchronize with.</param>
+        </member>
         <member name="T:Nikki.Support.Underground1.Class.TPKBlock">
             <summary>
             <see cref="T:Nikki.Support.Underground1.Class.TPKBlock"/> is a collection of <see cref="T:Nikki.Support.Underground1.Class.Texture"/>.
@@ -42016,7 +42368,7 @@
         </member>
         <member name="P:Nikki.Support.Underground1.Class.TPKBlock.Animations">
             <summary>
-            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.AnimSlot"/> of this <see cref="T:Nikki.Support.Underground1.Class.TPKBlock"/>.
+            Represents all <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/> of this <see cref="T:Nikki.Support.Underground1.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.Underground1.Class.TPKBlock.TexturePages">
@@ -42032,6 +42384,11 @@
         <member name="P:Nikki.Support.Underground1.Class.TPKBlock.TextureCount">
             <summary>
             Number of <see cref="T:Nikki.Support.Underground1.Class.Texture"/> in this <see cref="T:Nikki.Support.Underground1.Class.TPKBlock"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground1.Class.TPKBlock.AnimationCount">
+            <summary>
+            Number of <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/> in this <see cref="T:Nikki.Support.Underground1.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.Underground1.Class.TPKBlock.CompTexHeaderSize">
@@ -49181,6 +49538,76 @@
             </summary>
             <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
         </member>
+        <member name="P:Nikki.Support.Underground2.Class.TPKAnimation.GameINT">
+            <summary>
+            Game to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground2.Class.TPKAnimation.GameSTR">
+            <summary>
+            Game string to which the class belongs to.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground2.Class.TPKAnimation.AnimSlots">
+            <summary>
+            Animation slots of this <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.#ctor">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/>.
+            </summary>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.#ctor(System.String)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/>.
+            </summary>
+            <param name="CName">CollectionName of the new instance.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Initializes new instance of <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/>.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read text data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.MemoryCast(System.String)">
+            <summary>
+            Casts all attributes from this object to another one.
+            </summary>
+            <param name="CName">CollectionName of the new created object.</param>
+            <returns>Memory casted copy of the object.</returns>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.Assemble(System.IO.BinaryWriter)">
+            <summary>
+            Assembles <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/> into a byte array.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/> with.</param>
+            <returns>Byte array of the tpk block.</returns>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.Disassemble(System.IO.BinaryReader)">
+            <summary>
+            Disassembles <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/> array into separate properties.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read <see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/> with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes instance into a byte array and stores it in the file provided.
+            </summary>
+            <param name="bw"><see cref="T:System.IO.BinaryWriter"/> to write data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes byte array into an instance by loading data from the file provided.
+            </summary>
+            <param name="br"><see cref="T:System.IO.BinaryReader"/> to read data with.</param>
+        </member>
+        <member name="M:Nikki.Support.Underground2.Class.TPKAnimation.Synchronize(Nikki.Support.Underground2.Class.TPKAnimation)">
+            <summary>
+            Synchronizes all parts of this instance with another instance passed.
+            </summary>
+            <param name="other"><see cref="T:Nikki.Support.Underground2.Class.TPKAnimation"/> to synchronize with.</param>
+        </member>
         <member name="T:Nikki.Support.Underground2.Class.TPKBlock">
             <summary>
             <see cref="T:Nikki.Support.Underground2.Class.TPKBlock"/> is a collection of <see cref="T:Nikki.Support.Underground2.Class.Texture"/>.
@@ -49239,6 +49666,11 @@
         <member name="P:Nikki.Support.Underground2.Class.TPKBlock.TextureCount">
             <summary>
             Number of <see cref="T:Nikki.Support.Underground2.Class.Texture"/> in this <see cref="T:Nikki.Support.Underground2.Class.TPKBlock"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Underground2.Class.TPKBlock.AnimationCount">
+            <summary>
+            Number of <see cref="T:Nikki.Support.Shared.Parts.TPKParts.OldAnimSlot"/> in this <see cref="T:Nikki.Support.Underground2.Class.TPKBlock"/>.
             </summary>
         </member>
         <member name="P:Nikki.Support.Underground2.Class.TPKBlock.CompTexHeaderSize">

@@ -165,10 +165,10 @@ namespace Nikki.Support.MostWanted
 			}
 		}
 
-		/// <summary>
-		/// <see cref="Manager{T}"/> that manages <see cref="TPKBlock"/>.
-		/// </summary>
-		public TPKBlockManager TPKBlocks
+        /// <summary>
+        /// <see cref="Manager{T}"/> that manages <see cref="TPKBlock"/>.
+        /// </summary>
+        public TPKBlockManager TPKBlocks
 		{
 			get
 			{

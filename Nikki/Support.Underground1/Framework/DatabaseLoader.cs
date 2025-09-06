@@ -136,7 +136,7 @@ namespace Nikki.Support.Underground1.Framework
 				if (!Enum.IsDefined(typeof(BinBlockID), (uint)id))
 				{
 
-					Console.WriteLine("Located unknown data block. Please send MailLog file to the developer!!!");
+					Console.WriteLine("Located unknown data block. Please send MainLog file to the developer!!!");
 
 					if (this._offsets.TryGetValue((uint)id, out var list))
 					{

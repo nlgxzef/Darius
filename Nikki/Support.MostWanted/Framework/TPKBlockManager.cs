@@ -115,7 +115,7 @@ namespace Nikki.Support.MostWanted.Framework
 					continue;
 
 				}
-				else if (id == BinBlockID.TPKBlocks)
+				else if (id == BinBlockID.TPKBlocks || id == BinBlockID.CompTPKBlock)
 				{
 
 					br.BaseStream.Position = offset;

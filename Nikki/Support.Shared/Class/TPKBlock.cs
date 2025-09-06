@@ -122,7 +122,7 @@ namespace Nikki.Support.Shared.Class
         /// Represents all <see cref="AnimSlot"/> of this <see cref="TPKBlock"/>.
         /// </summary>
         [Category("Primary")]
-        public abstract List<AnimSlot> Animations { get; }
+        public List<AnimSlot> Animations { get; }
 
         /// <summary>
         /// Represents all <see cref="TexturePage"/> of this <see cref="TPKBlock"/>.
@@ -200,6 +200,14 @@ namespace Nikki.Support.Shared.Class
         #endregion
 
         #region Internal Methods
+
+        /// <summary>
+		/// Initializes new instance of <see cref="TPKBlock"/>.
+		/// </summary>
+		public TPKBlock()
+        {
+            this.Animations = new List<AnimSlot>();
+        }
 
         /// <summary>
         /// Casts all attributes from this object to another one.

@@ -25,7 +25,7 @@ namespace Nikki.Support.Underground2.Class
         #region Fields
 
         private string _collection_name;
-        private List<AnimSlot> _animations;
+        private TPKAnimation _oldAnimations;
         private List<TexturePage> _texturePages;
         private List<Shared.Class.Texture> _textures;
         private const long max = 0x7FFFFFFF;
@@ -89,7 +89,7 @@ namespace Nikki.Support.Underground2.Class
         /// Represents all <see cref="AnimSlot"/> of this <see cref="TPKBlock"/>.
         /// </summary>
         [Category("Primary")]
-        public override List<AnimSlot> Animations => this._animations;
+        public new List<OldAnimSlot> Animations => this._oldAnimations.AnimSlots;
 
         /// <summary>
         /// Represents all <see cref="TexturePage"/> of this <see cref="TPKBlock"/>.
@@ -110,6 +110,12 @@ namespace Nikki.Support.Underground2.Class
         public override int TextureCount => this.Textures.Count;
 
         /// <summary>
+        /// Number of <see cref="OldAnimSlot"/> in this <see cref="TPKBlock"/>.
+        /// </summary>
+        [Category("Primary")]
+        public new int AnimationCount => this.Animations.Count;
+
+        /// <summary>
         /// Indicates size of compressed texture header and compression block struct.
         /// </summary>
         protected override int CompTexHeaderSize => 0x9C;
@@ -123,7 +129,7 @@ namespace Nikki.Support.Underground2.Class
         /// </summary>
         public TPKBlock()
 		{
-            this._animations = new List<AnimSlot>();
+            this._oldAnimations = new TPKAnimation();
             this._texturePages = new List<TexturePage>();
             this._textures = new List<Shared.Class.Texture>();
 		}
@@ -168,6 +174,9 @@ namespace Nikki.Support.Underground2.Class
             if (this.CompressionType == TPKCompressionType.RawDecompressed) this.AssembleDecompressed(bw);
             else this.AssembleCompressed(bw);
 
+            // Assemble animations if any
+            if (this._oldAnimations.AnimSlots.Count > 0) this._oldAnimations.Assemble(bw);
+
             ForcedX.GCCollect();
         }
 
@@ -189,7 +198,7 @@ namespace Nikki.Support.Underground2.Class
             this.Get1Part2(bw);
             this.Get1Part4(bw);
             this.Get1Part5(bw);
-            this.Get1PartAnim(bw);
+            //this.Get1PartAnim(bw);
             bw.BaseStream.Position = position_1 - 4;
             bw.Write((int)(bw.BaseStream.Length - position_1));
             bw.BaseStream.Position = bw.BaseStream.Length;
@@ -270,7 +279,7 @@ namespace Nikki.Support.Underground2.Class
         public override void Disassemble(BinaryReader br)
         {
             var Start = br.BaseStream.Position;
-            uint ID = br.ReadUInt32();
+            var ID = br.ReadEnum<BinBlockID>();
             int size = br.ReadInt32();
             var Final = br.BaseStream.Position + size;
 
@@ -334,15 +343,28 @@ namespace Nikki.Support.Underground2.Class
             
             }
 
-            if (PartOffsets[8] != max)
-			{
-
-                br.BaseStream.Position = PartOffsets[8];
-                this.GetAnimations(br);
-
-			}
-
             br.BaseStream.Position = Final;
+
+            // Get Old Animations (if any)
+            if (br.BaseStream.Position < br.BaseStream.Length - 8)
+            {
+                ID = br.ReadEnum<BinBlockID>();
+                if (ID == BinBlockID.OldAnimationPack)
+                {
+                    size = br.ReadInt32();
+                    var end = br.BaseStream.Position + size;
+
+                    // Read
+                    br.BaseStream.Position = Final; // go back
+                    this._oldAnimations.Disassemble(br);
+                    br.BaseStream.Position = end;
+                }
+                else
+                {
+                    br.BaseStream.Position = Final;
+                }
+            }
+
         }
 
         /// <summary>
@@ -912,8 +934,8 @@ namespace Nikki.Support.Underground2.Class
                     var anim = this.Animations[loop];
                     writer.WriteNullTermUTF8(anim.Name);
                     writer.Write(anim.BinKey);
-                    writer.Write(anim.FramesPerSecond);
-                    writer.Write(anim.TimeBase);
+                    writer.Write((byte)anim.FramesPerSecond);
+                    writer.Write((byte)anim.TimeBase);
                     writer.Write((byte)anim.FrameTextures.Count);
 
                     for (int i = 0; i < anim.FrameTextures.Count; ++i)
@@ -990,7 +1012,7 @@ namespace Nikki.Support.Underground2.Class
             for (int loop = 0; loop < animcount; ++loop)
             {
 
-                var anim = new AnimSlot()
+                var anim = new OldAnimSlot()
                 {
                     Name = reader.ReadNullTermUTF8(),
                     BinKey = reader.ReadUInt32(),
@@ -1062,32 +1084,11 @@ namespace Nikki.Support.Underground2.Class
         /// <param name="other"><see cref="TPKBlock"/> to synchronize with.</param>
         internal void Synchronize(TPKBlock other)
         {
-            var animations = new List<AnimSlot>(other.Animations);
             var texturePages = new List<TexturePage>(other.TexturePages);
             var textures = new List<Shared.Class.Texture>(other.Textures);
 
             // Synchronize animations
-            for (int i = 0; i < this.Animations.Count; ++i)
-            {
-
-                bool found = false;
-
-                for (int j = 0; j < other.Animations.Count; ++j)
-                {
-
-                    if (other.Animations[j].BinKey == this.Animations[i].BinKey)
-                    {
-
-                        found = true;
-                        break;
-
-                    }
-
-                }
-
-                if (!found) animations.Add(this.Animations[i]);
-
-            }
+            _oldAnimations.Synchronize(other._oldAnimations);
 
             // Synchronize texture pages
             for (int i = 0; i < this.TexturePages.Count; ++i)
@@ -1135,7 +1136,6 @@ namespace Nikki.Support.Underground2.Class
 
             }
 
-            this._animations = animations;
             this._texturePages = texturePages;
             this._textures = textures;
             this.CompressionType = other.CompressionType;

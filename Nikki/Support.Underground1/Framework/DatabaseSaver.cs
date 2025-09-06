@@ -145,6 +145,7 @@ namespace Nikki.Support.Underground1.Framework
 					case BinBlockID.Materials:
 					case BinBlockID.STRBlocks:
 					case BinBlockID.TPKBlocks:
+					case BinBlockID.OldAnimationPack:
 					case BinBlockID.DBCarParts:
 					case BinBlockID.FNGCompress:
 					case BinBlockID.GCareer_Old:

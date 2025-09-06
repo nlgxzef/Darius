@@ -331,6 +331,16 @@
         ICECatalog = 0x0003B200, // 0x80 Modular
 
         /// <summary>
+        /// 0x0003B211
+        /// </summary>
+        ICECameras = 0x0003B211, // unknown
+
+        /// <summary>
+        /// 0x0003B700
+        /// </summary>
+        ShaperLightRigs = 0x0003B700, // unknown
+
+        /// <summary>
         /// 0x0003B800
         /// </summary>
         WWorld = 0x0003B800, // varies
@@ -469,6 +479,21 @@
         /// 0x00E34010
         /// </summary>
         EAGLAnimations = 0x00E34010, // varies
+
+        /// <summary>
+        /// 0x30300101
+        /// </summary>
+        OldAnimationPackPart1 = 0x30300101, // varies
+
+        /// <summary>
+        /// 0x30300102
+        /// </summary>
+        OldAnimationPackPart2 = 0x30300102, // varies
+
+        /// <summary>
+        /// 0x30300103
+        /// </summary>
+        OldAnimationPackPart3 = 0x30300103, // varies
 
         /// <summary>
         /// 0x30300200

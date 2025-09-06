@@ -153,6 +153,7 @@ namespace Nikki.Support.Underground2.Framework
 					case BinBlockID.SlotTypes:
 					case BinBlockID.STRBlocks:
 					case BinBlockID.TPKBlocks:
+					case BinBlockID.OldAnimationPack:
 					case BinBlockID.DBCarParts:
 					case BinBlockID.AcidEffects:
 					case BinBlockID.FNGCompress:
