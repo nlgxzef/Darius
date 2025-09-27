@@ -177,27 +177,39 @@ namespace Nikki.Support.Underground2.Class
 
             int length = 0;
 
-            foreach (var info in this._stringinfo)
+            // Write strings block to memory first
+            var msKeys = new MemoryStream();
+            var msStrings = new MemoryStream();
+            var msKeysWriter = new BinaryWriter(msKeys);
+            var msStringsWriter = new BinaryWriter(msStrings);
+
+            foreach (var info in this._stringinfo) 
             {
+                // Write key and offset
+                msKeysWriter.Write(info.Key);
+                msKeysWriter.Write(length);
 
-                bw.Write(info.Key);
-                bw.Write(length);
-                length += info.NulledTextLength;
+                // Write string
+                if (this._charset != null) msStringsWriter.WriteNullTermUTF8ByteArray(this._charset.Encode(info.Text));
+                else msStringsWriter.WriteNullTermUTF8(info.Text);
 
+                // Set new offset
+                length = (int)msStringsWriter.BaseStream.Length;
             }
 
-            foreach (var info in this._stringinfo)
-            {
-
-                if (this._charset != null) bw.WriteNullTermUTF8ByteArray(this._charset.Encode(info.Text));
-                else bw.WriteNullTermUTF8(info.Text);
-
-            }
+            // Write memory streams to main stream
+            msKeys.WriteTo(bw.BaseStream);
+            msStrings.WriteTo(bw.BaseStream);
 
             bw.FillBuffer(0x10);
             bw.BaseStream.Position = position - 4;
             bw.Write((int)(bw.BaseStream.Length - position));
             bw.BaseStream.Position = bw.BaseStream.Length;
+
+            msKeysWriter.Dispose();
+            msKeys.Dispose();
+            msStringsWriter.Dispose();
+            msStrings.Dispose();
         }
 
         /// <summary>

@@ -416,8 +416,8 @@ namespace Nikki.Support.Carbon.Parts.CarParts
 
 		private string GetPartName()
 		{
-			var name = this.GetNameUsingLodOffsets();
-			return String.IsNullOrEmpty(name) ? this.GetNameUsingPartOffsets() : name;
+			var name = this.GetNameUsingPartOffsets();
+			return String.IsNullOrEmpty(name) ? this.GetNameUsingLodOffsets() : name;
 		}
 
 		private string GetNameUsingLodOffsets()
@@ -469,7 +469,7 @@ namespace Nikki.Support.Carbon.Parts.CarParts
 		private string GetNameUsingPartOffsets()
 		{
 			CPAttribute attrib;
-			var realpart = "REAL_CAR_PART";
+			var realpart = String.Empty;
 
 			attrib = this.GetAttribute((uint)eAttribInt.PART_NAME_SELECTOR);
 
