@@ -292,8 +292,8 @@ namespace Nikki.Support.Undercover.Parts.BoundParts
 			this.BoneOffsetZ = br.ReadSingle();
 			br.BaseStream.Position += 4; // BoneOffsetW
 			this.Type = (BoundType)br.ReadByte();
-			br.BaseStream.Position += 1; // SubType
-			this.Shape = (BoundShape)br.ReadByte();
+            this.JointType = (BoundJointType)br.ReadByte();
+            this.Shape = (BoundShape)br.ReadByte();
 			this.Flags = (BoundFlags)br.ReadByte();
 			this.AttributeName = br.ReadUInt32().VltString(LookupReturn.EMPTY);
 			this.SurfaceName = br.ReadUInt32().VltString(LookupReturn.EMPTY);
@@ -334,8 +334,8 @@ namespace Nikki.Support.Undercover.Parts.BoundParts
 			bw.Write(this.BoneOffsetZ);
 			bw.Write(0); // BoneOffsetW
 			bw.Write((byte)this.Type);
-			bw.Write((byte)0);
-			bw.Write((byte)this.Shape);
+            bw.Write((byte)this.JointType);
+            bw.Write((byte)this.Shape);
 			bw.Write((byte)this.Flags);
 			bw.Write(this.AttributeName.VltHash());
 			bw.Write(this.SurfaceName.VltHash());

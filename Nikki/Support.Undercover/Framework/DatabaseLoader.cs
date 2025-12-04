@@ -33,6 +33,7 @@ namespace Nikki.Support.Undercover.Framework
 		private Block tpkblocks;
 		private Block tracks;
 		private Block vectorvinyls;
+		private Block skinregiondb;
 
 		public DatabaseLoader(Options options, Datamap db)
 		{
@@ -51,6 +52,7 @@ namespace Nikki.Support.Undercover.Framework
 			this.slottypes = new Block(BinBlockID.SlotTypes);
 			this.vectorvinyls = new Block(BinBlockID.VinylSystem);
 			this.caranimations = new Block(BinBlockID.CarInfoAnimHookup);
+			this.skinregiondb = new Block(BinBlockID.SkinRegionDB);
 		}
 
 		public void Invoke()
@@ -124,6 +126,7 @@ namespace Nikki.Support.Undercover.Framework
 			this._db.SlotTypes.Disassemble(br, this.slottypes);
 			this._db.SlotOverrides.Disassemble(br, this.slottypes);
 			this._db.VectorVinyls.Disassemble(br, this.vectorvinyls);
+			this._db.SkinRegions.Disassemble(br, this.vectorvinyls);
 			this.ProcessCarAnimations(br);
 		}
 
@@ -211,7 +214,11 @@ namespace Nikki.Support.Undercover.Framework
 						this.caranimations.Offsets.Add(off);
 						goto default;
 
-					default:
+                    case BinBlockID.SkinRegionDB: //addon vinyls
+                        this.skinregiondb.Offsets.Add(off);
+                        goto default;
+
+                    default:
 						br.BaseStream.Position += size;
 						break;
 

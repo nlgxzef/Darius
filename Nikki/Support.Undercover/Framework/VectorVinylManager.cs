@@ -18,12 +18,12 @@ namespace Nikki.Support.Undercover.Framework
 		/// <summary>
 		/// Game to which the class belongs to.
 		/// </summary>
-		public override GameINT GameINT => GameINT.Carbon;
+		public override GameINT GameINT => GameINT.Undercover;
 
 		/// <summary>
 		/// Game string to which the class belongs to.
 		/// </summary>
-		public override string GameSTR => GameINT.Carbon.ToString();
+		public override string GameSTR => GameINT.Undercover.ToString();
 
 		/// <summary>
 		/// Name of this <see cref="VectorVinylManager"/>.

@@ -18,12 +18,12 @@ namespace Nikki.Support.Prostreet.Framework
 		/// <summary>
 		/// Game to which the class belongs to.
 		/// </summary>
-		public override GameINT GameINT => GameINT.Carbon;
+		public override GameINT GameINT => GameINT.Prostreet;
 
 		/// <summary>
 		/// Game string to which the class belongs to.
 		/// </summary>
-		public override string GameSTR => GameINT.Carbon.ToString();
+		public override string GameSTR => GameINT.Prostreet.ToString();
 
 		/// <summary>
 		/// Name of this <see cref="VectorVinylManager"/>.

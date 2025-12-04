@@ -43,6 +43,7 @@ namespace Nikki.Support.Undercover
 			this.Managers.Add(new TPKBlockManager(this));
 			this.Managers.Add(new TrackManager(this));
 			this.Managers.Add(new VectorVinylManager(this));
+			this.Managers.Add(new SkinRegionManager(this));
 		}
 
 		/// <summary>
@@ -189,11 +190,23 @@ namespace Nikki.Support.Undercover
 			}
 		}
 
-		/// <summary>
-		/// Loads all data in the database using options passed.
-		/// </summary>
-		/// <param name="options"><see cref="Options"/> that are used to load data.</param>
-		public override void Load(Options options)
+        /// <summary>
+        /// <see cref="Manager{T}"/> that manages <see cref="SkinRegion"/>.
+        /// </summary>
+        public SkinRegionManager SkinRegions
+        {
+            get
+            {
+                var manager = this.GetManager(typeof(SkinRegionManager));
+                return manager == null ? null : manager as SkinRegionManager;
+            }
+        }
+
+        /// <summary>
+        /// Loads all data in the database using options passed.
+        /// </summary>
+        /// <param name="options"><see cref="Options"/> that are used to load data.</param>
+        public override void Load(Options options)
 		{
 			using var loader = new DatabaseLoader(options, this);
 			loader.Invoke();
