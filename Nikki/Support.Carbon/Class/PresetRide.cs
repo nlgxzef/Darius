@@ -566,6 +566,13 @@ namespace Nikki.Support.Carbon.Class
         public PaintValues PAINT_VALUES { get; }
 
         /// <summary>
+        /// Wheels paint attributes of this <see cref="PresetRide"/>.
+        /// </summary>
+        [Expandable("Visuals")]
+        [Browsable(false)]
+        public PaintValues WHEEL_PAINT_VALUES { get; }
+
+        /// <summary>
         /// Vinyl attributes of this <see cref="PresetRide"/>.
         /// </summary>
         [Expandable("Vinyls")]
@@ -764,6 +771,7 @@ namespace Nikki.Support.Carbon.Class
         public PresetRide()
 		{
             this.PAINT_VALUES = new PaintValues();
+            this.WHEEL_PAINT_VALUES = new PaintValues();
             this.ZERO_DAMAGES = new ZeroDamage();
             this.ATTACHMENTS = new Attachments();
             this.KIT_DAMAGES = new Damages();
@@ -919,10 +927,13 @@ namespace Nikki.Support.Carbon.Class
             bw.Write(this.Misc.BinHash());
 
             // Write Paint
+            bw.Write(this.PAINT_VALUES.IsCarbonStyle == eBoolean.True ? (byte)1 : (byte)0);
+            bw.Write(this.WHEEL_PAINT_VALUES.IsCarbonStyle == eBoolean.True ? (byte)1 : (byte)0);
+            bw.WriteBytes(0, 0x2);
             this.PAINT_VALUES.Write(bw);
+            this.WHEEL_PAINT_VALUES.Write(bw);
 
             // Write Autosculpt
-            bw.WriteBytes(0, 0x10);
             this.FRONTBUMPER.Write(bw);
             bw.Write((short)0);
             this.REARBUMPER.Write(bw);
@@ -1056,10 +1067,13 @@ namespace Nikki.Support.Carbon.Class
             this.Misc = br.ReadUInt32().BinString(LookupReturn.EMPTY);
 
             // Read Paint
+            this.PAINT_VALUES.IsCarbonStyle = br.ReadByte() == 0 ? eBoolean.False : eBoolean.True;
+            this.WHEEL_PAINT_VALUES.IsCarbonStyle = br.ReadByte() == 0 ? eBoolean.False : eBoolean.True;
+            br.BaseStream.Position += 2;
             this.PAINT_VALUES.Read(br);
+            this.WHEEL_PAINT_VALUES.Read(br);
 
             // Read Autosculpt
-            br.BaseStream.Position += 0x10;
             this.FRONTBUMPER.Read(br);
             br.BaseStream.Position += 2;
             this.REARBUMPER.Read(br);
@@ -1220,6 +1234,7 @@ namespace Nikki.Support.Carbon.Class
 
                 // Read Paint
                 this.PAINT_VALUES.Serialize(writer);
+                this.WHEEL_PAINT_VALUES.Serialize(writer);
 
                 // Read Autosculpt
                 this.FRONTBUMPER.Write(writer);
@@ -1360,6 +1375,7 @@ namespace Nikki.Support.Carbon.Class
 
             // Read Paint
             this.PAINT_VALUES.Deserialize(reader);
+            this.WHEEL_PAINT_VALUES.Deserialize(reader);
 
             // Read Autosculpt
             this.FRONTBUMPER.Read(reader);

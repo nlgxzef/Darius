@@ -69,7 +69,6 @@ namespace Nikki.Support.Carbon.Parts.PresetParts
 		/// <param name="br"><see cref="BinaryReader"/> to read data with.</param>
 		public void Read(BinaryReader br)
 		{
-			this.IsCarbonStyle = br.ReadInt32() == 0 ? eBoolean.False : eBoolean.True;
 			this.PaintGroup = br.ReadUInt32().BinString(LookupReturn.EMPTY);
 			this.PaintSwatch = br.ReadUInt32().BinString(LookupReturn.EMPTY);
 			this.Saturation = br.ReadSingle();
@@ -82,7 +81,6 @@ namespace Nikki.Support.Carbon.Parts.PresetParts
 		/// <param name="bw"><see cref="BinaryWriter"/> to write data with.</param>
 		public void Write(BinaryWriter bw)
 		{
-			bw.Write(this.IsCarbonStyle == eBoolean.True ? (int)1 : (int)0);
 			bw.Write(this.PaintGroup.BinHash());
 			bw.Write(this.PaintSwatch.BinHash());
 			bw.Write(this.Saturation);
