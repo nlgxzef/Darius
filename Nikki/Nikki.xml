@@ -12285,6 +12285,11 @@
             Paint attributes of this <see cref="T:Nikki.Support.Carbon.Class.PresetRide"/>.
             </summary>
         </member>
+        <member name="P:Nikki.Support.Carbon.Class.PresetRide.WHEEL_PAINT_VALUES">
+            <summary>
+            Wheels paint attributes of this <see cref="T:Nikki.Support.Carbon.Class.PresetRide"/>.
+            </summary>
+        </member>
         <member name="P:Nikki.Support.Carbon.Class.PresetRide.VINYL01">
             <summary>
             Vinyl attributes of this <see cref="T:Nikki.Support.Carbon.Class.PresetRide"/>.
@@ -37096,6 +37101,11 @@
         <member name="P:Nikki.Support.Undercover.Datamap.VectorVinyls">
             <summary>
             <see cref="T:Nikki.Core.Manager`1"/> that manages <see cref="T:Nikki.Support.Undercover.Class.VectorVinyl"/>.
+            </summary>
+        </member>
+        <member name="P:Nikki.Support.Undercover.Datamap.SkinRegions">
+            <summary>
+            <see cref="T:Nikki.Core.Manager`1"/> that manages <see cref="T:Nikki.Support.Undercover.Class.SkinRegion"/>.
             </summary>
         </member>
         <member name="M:Nikki.Support.Undercover.Datamap.Load(Nikki.Core.Options)">
